@@ -19,8 +19,9 @@ source /share/apps/intel/vtune_amplifier_xe_2017/amplxe-vars.sh
 cd $Project_Folder
 
 # Compilar
+mkdir -p classes
 # seq
-javac -g -d classes ./seq/*.java
+javac -g -d ./classes ./seq/*.java
 
 # Correr com VTune
 amplxe-cl -collect advanced-hotspots -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ seq.JGFSparseMatmultBenchSizeA
