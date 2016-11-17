@@ -19,8 +19,9 @@ Project_Folder="/home/a67649/tese/benchmarks/ScholarShip_public/JGF/Sparse/JGF_o
 cd $Project_Folder
 
 # Compilar
+mkdir -p classes
 # seq
-javac -g -d classes ./seq/*.java
+javac -g -d ./classes ./seq/*.java
 
 # Correr com VTune
 amplxe-cl -collect hotspots -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ seq.JGFSparseMatmultBenchSizeA
