@@ -34,6 +34,8 @@ amplxe-cl -collect hotspots -- java -Xcomp -Djava.library.path=native_lib/ia32 -
 echo "Collecting Memory-access"
 (>&2 echo "Collecting Memory_Acess")
 amplxe-cl -collect memory-access -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ sm.Sm_jgf -size 5 4
-echo "Collecting Disk-io"
-(>&2 echo "Collecting Disk-io")
-amplxe-cl -collect disk-io -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ sm.Sm_jgf -size 5 4
+(>&2 echo "Collecting advanced-hotspots")
+amplxe-cl -collect advanced-hotspots -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ sm.Sm_jgf -size 5 4
+echo "Collecting general-exploration"
+(>&2 echo "Collecting general-exploration")
+amplxe-cl -collect general-exploration -- java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes/ sm.Sm_jgf -size 5 4
