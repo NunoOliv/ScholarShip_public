@@ -9,9 +9,9 @@
 
 # Directories
 Project_Folder="/home/a67649/tese/benchmarks/ScholarShip_public/JGF/crypt/Original"
-Vtune_output_dir="/home/a67649/tese/benchmarks/ScholarShip_public/JGF/crypt/Original/Vtune_out/smJGF_j8"
+Vtune_output_dir="/home/a67649/tese/benchmarks/ScholarShip_public/JGF/crypt/Original/Vtune_out/smJGF_j9"
 # Inicializar Java 
-Java_dir="/share/apps/java/jdk1.8.0_20/bin/"
+Java_dir="/home/a67649/apps/jdk9/bin/"
 
 
 # Inicializar VTune
@@ -22,22 +22,22 @@ source /share/apps/intel/vtune_amplifier_xe_2017/sep_vars.sh
 cd $Project_Folder
 
 # Compilar
-mkdir -p classes
+mkdir -p classes_j9
 # seq
-${Java_dir}/javac -g -d ./classes_j8 ./smJGF/*.java
+${Java_dir}/javac -g -d ./classes_j9 ./smJGF/*.java
 # Correr com VTune
 # Criar pasta
-mkdir -p "/home/a67649/tese/benchmarks/ScholarShip_public/JGF/crypt/Original/Vtune_out/smJGF_j8"
+mkdir -p "/home/a67649/tese/benchmarks/ScholarShip_public/JGF/crypt/Original/Vtune_out/smJGF_j9"
 cd $Vtune_output_dir
 
 echo "Collecting HotSpots"
 (>&2 echo "Collecting hotspots")
-amplxe-cl -collect hotspots -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j8/ smJGF.JGFCryptBenchSizeA -size 5 4
+amplxe-cl -collect hotspots -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j9/ smJGF.JGFCryptBenchSizeA -size 5 4
 echo "Collecting Memory-access"
 (>&2 echo "Collecting Memory_Acess")
-amplxe-cl -collect memory-access -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j8/ smJGF.JGFCryptBenchSizeA -size 5 4
+amplxe-cl -collect memory-access -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j9/ smJGF.JGFCryptBenchSizeA -size 5 4
 (>&2 echo "Collecting advanced-hotspots")
-amplxe-cl -collect advanced-hotspots -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j8/ smJGF.JGFCryptBenchSizeA -size 5 4
+amplxe-cl -collect advanced-hotspots -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j9/ smJGF.JGFCryptBenchSizeA -size 5 4
 echo "Collecting general-exploration"
 (>&2 echo "Collecting general-exploration")
-amplxe-cl -collect general-exploration -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j8/ smJGF.JGFCryptBenchSizeA -size 5 4
+amplxe-cl -collect general-exploration -- ${Java_dir}/java -Xcomp -Djava.library.path=native_lib/ia32 -cp ${Project_Folder}/classes_j9/ smJGF.JGFCryptBenchSizeA -size 5 4
