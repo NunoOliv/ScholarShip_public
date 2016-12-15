@@ -1,5 +1,5 @@
 # PBS -N 
-#PBS -l walltime=00:05:00
+#PBS -l walltime=00:15:00
 #PBS -q mei
 
 # PBS -m abe
@@ -32,6 +32,7 @@ cd $Project_Folder
 # Compilar
 mkdir -p $Classes_dir
 # seq
+${Java_dir}/java -version
 ${Java_dir}/javac -g -d ./$Classes_dir ./sm/*.java
 # Correr com VTune
 # Criar pasta
