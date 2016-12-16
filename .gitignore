@@ -1,3 +1,10 @@
+#Project related
+Vtune_out/
+run*.sh.e*
+run*.sh.o*
+
+
+
 #created by https://www.gitignore.io/api/java,windows,linux
 
 ### Windows ###
