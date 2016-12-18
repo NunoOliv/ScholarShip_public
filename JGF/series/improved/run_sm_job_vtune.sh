@@ -6,6 +6,8 @@
 # PBS -M nuno.oliv.94@gmail.com
 
 #PBS -l nodes=1:r662:ppn=4
+echo "Node Info"
+read -r node_info<$PBS_NODEFILE
 
 # Directories
 if [ $JavaV == "j9" ]; then
@@ -21,6 +23,8 @@ Classes_dir="classes_$JavaV"
 
 
 # Inicializar VTune
+echo "Preparing Vtune."
+(>&2 echo "Preparing Vtune.")
 source /share/apps/intel/vtune_amplifier_xe_2017/amplxe-vars.sh
 source /share/apps/intel/vtune_amplifier_xe_2017/sep_vars.sh
 
@@ -28,6 +32,8 @@ source /share/apps/intel/vtune_amplifier_xe_2017/sep_vars.sh
 cd $Project_Folder
 
 # Compilar
+echo "Compiling code"
+(>&2 echo "Compiling code")
 mkdir -p $Classes_dir
 # seq
 ${Java_dir}/java -version
@@ -36,7 +42,7 @@ ${Java_dir}/javac -g -d ./$Classes_dir ./sm/*.java
 # Criar pasta
 mkdir -p "/home/a67649/tese/benchmarks/ScholarShip_public/JGF/series/improved/Vtune_out/smSeries_$JavaV"
 cd $Vtune_output_dir
-(>&2 echo "${Project_Folder}/${Classes_dir}/")
+# (>&2 echo "${Project_Folder}/${Classes_dir}/")
 
 if [ $Test == "hs" ]; then
 	echo "Collecting HotSpots"
